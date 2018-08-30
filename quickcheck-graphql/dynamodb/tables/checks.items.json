@@ -1,0 +1,104 @@
+{
+  "RequestItems": {
+    "Checks": [
+      {
+        "PutRequest": {
+          "Item": {
+            "checkId": { "S": "1" },
+            "name": { "S": "Test Check #1" },
+            "enabled": { "BOOL": true },
+            "schedule": { "S": "1 minute" },
+            "scheduleOffsetSeconds": { "N": "5" },
+            "notifications": {
+              "L": [
+                {
+                  "M": {
+                    "name": { "S": "Tom" },
+                    "email": { "S": "tom.suffern.wright@gmail.com" }
+                  }
+                }
+              ]
+            },
+            "request": {
+              "M": {
+                "uri": { "S": "http://www.google.com" },
+                "method": { "S": "GET" },
+                "headers": {
+                  "M": {
+                    "TestHeader": { "S": "Test" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+
+      {
+        "PutRequest": {
+          "Item": {
+            "checkId": { "S": "2" },
+            "name": { "S": "Test Check #2" },
+            "enabled": { "BOOL": false },
+            "schedule": { "S": "1 minute" },
+            "scheduleOffsetSeconds": { "N": "27" },
+            "notifications": {
+              "L": [
+                {
+                  "M": {
+                    "name": { "S": "Tom" },
+                    "email": { "S": "tom.suffern.wright@gmail.com" }
+                  }
+                }
+              ]
+            },
+            "request": {
+              "M": {
+                "uri": { "S": "http://www.google.com" },
+                "method": { "S": "GET" },
+                "headers": {
+                  "M": {
+                    "TestHeader": { "S": "Test2" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+
+      {
+        "PutRequest": {
+          "Item": {
+            "checkId": { "S": "3" },
+            "name": { "S": "Test Check #3" },
+            "enabled": { "BOOL": true },
+            "schedule": { "S": "5 minute" },
+            "scheduleOffsetSeconds": { "N": "68" },
+            "notifications": {
+              "L": [
+                {
+                  "M": {
+                    "name": { "S": "Tom" },
+                    "email": { "S": "tom.suffern.wright@gmail.com" }
+                  }
+                }
+              ]
+            },
+            "request": {
+              "M": {
+                "uri": { "S": "http://www.google.com" },
+                "method": { "S": "GET" },
+                "headers": {
+                  "M": {
+                    "TestHeader": { "S": "Test3" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

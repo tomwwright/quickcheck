@@ -1,0 +1,10 @@
+{
+  "Records": [
+    {
+      "Sns": {
+        "Message":
+          "{\"request\":{\"uri\":\"http://www.google.com\",\"method\":\"GET\",\"headers\":{}}, \"notifications\": [{\"type\":\"email\",\"to\": [\"tom.suffern.wright@gmail.com\"], \"checkName\":\"testNotifyEmailCheckName\",\"checkTime\": 1534134701299}]}"
+      }
+    }
+  ]
+}

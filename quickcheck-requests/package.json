@@ -1,0 +1,23 @@
+{
+  "name": "quickcheck",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "github.com/tomwwright/quickcheck",
+  "author": "Tom Wright",
+  "license": "MIT",
+  "dependencies": {
+    "@types/aws-sdk": "^2.7.0",
+    "@types/request": "^2.47.1",
+    "@types/request-promise-native": "^1.0.15",
+    "aws-sdk": "^2.291.0",
+    "request": "^2.87.0",
+    "request-promise-native": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.10",
+    "serverless-dynamodb-local": "^0.2.30",
+    "serverless-offline": "^3.25.6",
+    "serverless-plugin-typescript": "^1.1.5",
+    "typescript": "^3.0.1"
+  }
+}

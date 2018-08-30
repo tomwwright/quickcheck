@@ -1,0 +1,25 @@
+service: quickcheck-graphql
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+functions:
+  graphql:
+    handler: index.server
+    events:
+    - http:
+        path: /
+        method: post
+        cors: true
+  playground:
+    handler: index.playground
+    events:
+    - http:
+        path: /
+        method: get
+        cors: true

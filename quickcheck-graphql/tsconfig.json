@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "lib": ["es6", "dom", "esnext"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": "."
+  },
+  "include": ["*.ts", "**/*.ts"],
+  "exclude": ["node_modules"]
+}

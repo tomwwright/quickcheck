@@ -1,0 +1,55 @@
+{
+  "TableName": "Checks",
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "checkId",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "schedule",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "scheduleOffsetSeconds",
+      "AttributeType": "N"
+    }
+  ],
+  "KeySchema": [
+    {
+      "AttributeName": "checkId",
+      "KeyType": "HASH"
+    }
+  ],
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "Schedule",
+      "KeySchema": [
+        {
+          "AttributeName": "schedule",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "scheduleOffsetSeconds",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 1,
+        "WriteCapacityUnits": 1
+      }
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 1,
+    "WriteCapacityUnits": 1
+  },
+  "StreamSpecification": {
+    "StreamEnabled": false
+  },
+  "SSESpecification": {
+    "Enabled": true
+  }
+}

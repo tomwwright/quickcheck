@@ -1,0 +1,14 @@
+{
+  "Requests": [
+    {
+      "PutRequest": {
+        "Item": {
+          "requestId": { "S": "1" },
+          "userId": { "S": "1" },
+          "uri": { "S": "http://www.google.com" },
+          "method": { "S": "GET" }
+        }
+      }
+    }
+  ]
+}

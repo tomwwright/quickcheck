@@ -1,0 +1,33 @@
+service: quickcheck
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, 'local'}
+  environment:
+    IS_OFFLINE: ${file(config.${opt:stage}.yml):is_offline, 'false'}
+    GRAPHQL_URI: ${file(config.${opt:stage}.yml):graphql_uri}/
+    AWS_REGION: ${file(config.${opt:stage}.yml):aws_region, 'local'}
+    AWS_ACCOUNT_ID: ${file(config.${opt:stage}.yml):aws_region, '012345678912'}
+    EMAIL_NOTIFICATION_QUEUE: quickcheck-emails-${opt:stage}
+    CHECK_QUEUE: quickcheck-checks-${opt:stage}
+
+functions:
+  schedule:
+    handler: index.schedule
+  check:
+    handler: index.check
+    events:
+      - sqs:
+          arn: arn:aws:sqs:ap-southeast-2:933397847440:quickcheck-checks-${opt:stage}
+          batchSize: 1
+  notify:
+    handler: index.notify
+    events:
+      - sqs:
+          arn: arn:aws:sqs:ap-southeast-2:933397847440:quickcheck-emails-${opt:stage}
+          batchSize: 1

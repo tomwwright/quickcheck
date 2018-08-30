@@ -1,0 +1,10 @@
+version: "3"
+services:
+  dynamodb:
+    build: .
+    container_name: dynamodb
+    command: -sharedDb
+    ports:
+      - 8000:8000
+    volumes:
+      - /opt/dynamodb
