@@ -1,28 +1,36 @@
 {
+  "TableName": "Results",
   "AttributeDefinitions": [
     {
-      "AttributeName": "requestId",
+      "AttributeName": "resultId",
       "AttributeType": "S"
     },
     {
-      "AttributeName": "userId",
+      "AttributeName": "checkId",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "datetime",
       "AttributeType": "S"
     }
   ],
-  "TableName": "Requests",
   "KeySchema": [
     {
-      "AttributeName": "requestId",
+      "AttributeName": "resultId",
       "KeyType": "HASH"
     }
   ],
   "GlobalSecondaryIndexes": [
     {
-      "IndexName": "UserId",
+      "IndexName": "CheckDatetime",
       "KeySchema": [
         {
-          "AttributeName": "userId",
+          "AttributeName": "checkId",
           "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "datetime",
+          "KeyType": "RANGE"
         }
       ],
       "Projection": {

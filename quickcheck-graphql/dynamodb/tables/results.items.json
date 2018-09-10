@@ -1,0 +1,45 @@
+{
+  "RequestItems": {
+    "Results": [
+      {
+        "PutRequest": {
+          "Item": {
+            "resultId": { "S": "1" },
+            "checkId": { "S": "1" },
+            "request": {
+              "M": {
+                "uri": { "S": "http://www.google.com" },
+                "method": { "S": "GET" },
+                "headers": {
+                  "M": {
+                    "TestHeader": { "S": "Test" }
+                  }
+                }
+              }
+            },
+            "datetime": { "S": "2018-09-10T15:53:00" },
+            "elapsedMillis": { "N": "330" },
+            "statusCode": { "N": "200" },
+            "responseHeaders": {
+              "M": {
+                "TestResponseHeader": { "S": "TestResponse" }
+              }
+            },
+            "body": { "S": "ok" },
+            "message": { "S": "message" },
+            "sentNotifications": {
+              "L": [
+                {
+                  "M": {
+                    "name": { "S": "Tom" },
+                    "email": { "S": "tom.suffern.wright@gmail.com" }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

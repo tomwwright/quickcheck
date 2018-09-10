@@ -16,7 +16,7 @@ export const ResultGraphQL = new GraphQLObjectType({
     resultId: { type: GraphQLID },
     checkId: { type: GraphQLString },
     request: { type: RequestGraphQL },
-    timestamp: { type: GraphQLString },
+    datetime: { type: GraphQLString },
     elapsedMillis: { type: GraphQLInt },
     statusCode: { type: GraphQLInt },
     responseHeaders: { type: new GraphQLList(KeyValueGraphQL) },
