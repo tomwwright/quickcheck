@@ -39,3 +39,16 @@ export class Result {
   @attribute()
   sentNotifications: Notification[];
 }
+
+export type ResultType = {
+  resultId: string;
+  checkId: string;
+  request: Request;
+  datetime: string;
+  elapsedMillis: number;
+  statusCode: number;
+  responseHeaders: { [key: string]: string };
+  body: string;
+  message: string;
+  sentNotifications: Notification[];
+};

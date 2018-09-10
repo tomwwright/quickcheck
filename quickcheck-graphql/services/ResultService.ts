@@ -1,7 +1,7 @@
 import { client, mapper } from "../lib/mapper";
 import { between } from "@aws/dynamodb-expressions";
 
-import { Result } from "../models/Result";
+import { Result, ResultType } from "../models/Result";
 
 export const ResultService = {
   getById(resultId: string): Promise<Result> {
@@ -30,5 +30,12 @@ export const ResultService = {
     }
 
     return results;
+  },
+
+  async put(resultData: ResultType) {
+    const result = new Result();
+    Object.assign(result, resultData);
+
+    return mapper.put(result);
   }
 };
