@@ -1,6 +1,7 @@
 import { SQSHandler, Context } from "aws-lambda";
 
-import { RequestService, Request } from "../services/request";
+import { RequestService, Request, RequestResult } from "../services/request";
+import { ResultService, Result } from "../services/result";
 import { EmailNotification } from "../handlers/notify";
 import { MessagingService } from "../services/messaging";
 import { Check } from "../services/check";
@@ -11,6 +12,8 @@ export const CheckHandler: SQSHandler = async (event, context) => {
   const requestResult = await RequestService.performRequest(check.request);
   console.log(JSON.stringify(requestResult));
 
+  var failedEmailNotifications = [];
+
   if (requestResult.failed == true || requestResult.statusCode >= 400) {
     for (const notification of check.notifications) {
       try {
@@ -18,14 +21,48 @@ export const CheckHandler: SQSHandler = async (event, context) => {
           type: "email",
           to: [notification.email],
           checkName: check.name,
-          checkTime: requestResult.requestTime
+          datetime: requestResult.datetime
         });
         console.log("Queued email notification as Message ID: " + messageId);
       } catch (error) {
+        failedEmailNotifications.push(notification);
         console.error(
-          "Error queued email notification: " + JSON.stringify(error)
+          "Error queueing email notification: " + JSON.stringify(error)
         );
       }
     }
   }
+
+  const result: Result = createResult(check, requestResult);
+  var failedInsertingResult = false;
+
+  try {
+    const resultId = await ResultService.putResult(result);
+    console.log("Inserted result with Result ID: " + resultId);
+  } catch (error) {
+    failedInsertingResult = true;
+    console.error("Error inserting result: " + JSON.stringify(error));
+  }
+
+  if (failedEmailNotifications.length > 0 || failedInsertingResult) {
+    context.fail(
+      `Failed email notifications: ${
+        failedEmailNotifications.length
+      }, failed to insert result: ${failedInsertingResult}`
+    );
+  }
 };
+
+function createResult(check: Check, requestResult: RequestResult): Result {
+  return {
+    checkId: check.checkId,
+    request: check.request,
+    datetime: requestResult.datetime,
+    elapsedMillis: requestResult.elapsedMillis,
+    statusCode: requestResult.statusCode,
+    body: requestResult.body,
+    responseHeaders: requestResult.responseHeaders,
+    message: `failed: ${requestResult.failed}`,
+    sentNotifications: check.notifications
+  };
+}

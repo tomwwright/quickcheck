@@ -6,7 +6,7 @@ export type EmailNotification = {
   type: "email";
   to: string[];
   checkName: string;
-  checkTime: number;
+  datetime: string;
 };
 
 export const NotifyHandler: SQSHandler = async (event, context) => {
@@ -21,8 +21,8 @@ export const NotifyHandler: SQSHandler = async (event, context) => {
         <h1>Failed check on QuickCheck!</h1>
         
         <p><b>Check Name</b>: ${notification.checkName}</p>
-        <p><b>Check Failure Time</b>: ${new Date(
-          notification.checkTime
+        <p><b>Check Failure Time</b>: ${Date.parse(
+          notification.datetime
         ).toLocaleString()}</p>
 
         Regards,
@@ -33,7 +33,9 @@ export const NotifyHandler: SQSHandler = async (event, context) => {
         ---------------------------
         
         Check Name: ${notification.checkName}
-        Check Failure Time: ${new Date(notification.checkTime).toLocaleString()}
+        Check Failure Time: ${Date.parse(
+          notification.datetime
+        ).toLocaleString()}
         
         Regards,
         QuickCheck Team`
