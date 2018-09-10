@@ -17,9 +17,10 @@ const sqsOptions = process.env.IS_OFFLINE
 
 export const sqs = new SQS(sqsOptions);
 
-export const queueMessage = async (queueUrl: string, body: any) => {
+export const queueMessage = async (queueUrl: string, body: any, delaySeconds: number = 0) => {
   const message: SQS.SendMessageRequest = {
     MessageBody: JSON.stringify(body),
+    DelaySeconds: delaySeconds,
     QueueUrl: queueUrl
   };
 
