@@ -1,9 +1,0 @@
-{
-  "Records": [
-    {
-      "Sns": {
-        "Message": "{\"request\":{\"uri\":\"http://www.google.com\",\"method\":\"GET\",\"headers\":{}}, \"notifications\": [{\"type\":\"email\",\"to\": [\"tom.suffern.wright@gmail.com\"], \"checkName\":\"testNotifyEmailCheckName\",\"datetime\": \"2018-09-10T16:04:00\"}]}"
-      }
-    }
-  ]
-}

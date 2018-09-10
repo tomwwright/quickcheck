@@ -21,7 +21,7 @@ export type Notification = {
 };
 
 const PutResultMutation = `
-mutation($schedule:Result) {
+mutation($result:ResultInput) {
   Result(result: $result) {
     resultId
   }
@@ -29,7 +29,9 @@ mutation($schedule:Result) {
 
 type PutResultMutationResponse = {
   data: {
-    resultId: string;
+    Result: {
+      resultId: string;
+    };
   };
 };
 
@@ -47,7 +49,7 @@ export const ResultService = {
       }
     );
 
-    return response.data.resultId;
+    return response.data.Result.resultId;
   }
 };
 

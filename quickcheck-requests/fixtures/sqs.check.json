@@ -1,0 +1,7 @@
+{
+  "Records": [
+    {
+      "body": "{\"checkId\": \"100\", \"request\":{\"uri\":\"http://www.google.com\",\"method\":\"GET\",\"headers\":{}}, \"notifications\": [{\"name\":\"Tom Wright\",\"email\": \"tom.suffern.wright@gmail.com\"}]}"
+    }
+  ]
+}

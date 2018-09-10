@@ -1,0 +1,7 @@
+{
+  "Records": [
+    {
+      "body": "{\"checkId\": \"100\", \"request\":{\"uri\":\"http://baduri.tomwwright.com/\",\"method\":\"GET\",\"headers\":{}}, \"notifications\":\"notifications\": [{\"name\":\"Tom Wright\",\"email\": \"tom.suffern.wright@gmail.com\"}]}"
+    }
+  ]
+}
