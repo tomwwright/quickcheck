@@ -41,7 +41,7 @@ export const ResultInputGraphQL = new GraphQLInputObjectType({
     request: { type: new GraphQLNonNull(RequestInputGraphQL) },
     datetime: { type: new GraphQLNonNull(GraphQLString) },
     elapsedMillis: { type: new GraphQLNonNull(GraphQLInt) },
-    statusCode: { type: new GraphQLNonNull(GraphQLInt) },
+    statusCode: { type: GraphQLInt },
     responseHeaders: {
       type: new GraphQLList(KeyValueInputGraphQL)
     },

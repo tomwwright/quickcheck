@@ -23,6 +23,11 @@ provider:
       Resource:
         - "arn:aws:sqs:${file(config.${opt:stage}.yml):aws_region}:${file(config.${opt:stage}.yml):aws_account_id}:quickcheck-checks-${opt:stage}"
         - "arn:aws:sqs:${file(config.${opt:stage}.yml):aws_region}:${file(config.${opt:stage}.yml):aws_account_id}:quickcheck-emails-${opt:stage}"
+    - Effect: "Allow"
+      Action:
+        - "ses:SendEmail"
+      Resource:
+        - "arn:aws:ses:us-east-1:933397847440:identity/*"
 
 functions:
   schedule:
