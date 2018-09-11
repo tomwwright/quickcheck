@@ -63,6 +63,6 @@ function createResult(check: Check, requestResult: RequestResult): Result {
     body: requestResult.body,
     responseHeaders: requestResult.responseHeaders,
     message: `failed: ${requestResult.failed}`,
-    sentNotifications: check.notifications
+    sentNotifications: requestResult.failed ? check.notifications : []
   };
 }
