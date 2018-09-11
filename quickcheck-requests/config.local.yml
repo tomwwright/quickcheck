@@ -1,3 +1,5 @@
-graphql_uri: http://localhost:3000/
 aws_account_id: 012345678912
+aws_region: local
 is_offline: true
+graphql_uri: http://localhost:3000/
+graphql_api_key: xxxx

@@ -8,26 +8,44 @@ provider:
   name: aws
   runtime: nodejs8.10
   stage: ${opt:stage, 'local'}
+  region: ${file(config.${opt:stage}.yml):aws_region}
   environment:
     IS_OFFLINE: ${file(config.${opt:stage}.yml):is_offline, 'false'}
-    GRAPHQL_URI: ${file(config.${opt:stage}.yml):graphql_uri}/
-    AWS_REGION: ${file(config.${opt:stage}.yml):aws_region, 'local'}
-    AWS_ACCOUNT_ID: ${file(config.${opt:stage}.yml):aws_region, '012345678912'}
+    GRAPHQL_URI: ${file(config.${opt:stage}.yml):graphql_uri}
+    GRAPHQL_API_KEY: ${file(config.${opt:stage}.yml):graphql_api_key}
+    AWS_ACCOUNT_ID: ${file(config.${opt:stage}.yml):aws_account_id}
     EMAIL_NOTIFICATION_QUEUE: quickcheck-emails-${opt:stage}
     CHECK_QUEUE: quickcheck-checks-${opt:stage}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "sqs:*Message"
+      Resource:
+        - "arn:aws:sqs:${file(config.${opt:stage}.yml):aws_region}:${file(config.${opt:stage}.yml):aws_account_id}:quickcheck-checks-${opt:stage}"
+        - "arn:aws:sqs:${file(config.${opt:stage}.yml):aws_region}:${file(config.${opt:stage}.yml):aws_account_id}:quickcheck-emails-${opt:stage}"
 
 functions:
   schedule:
     handler: index.schedule
+    events:
+      - schedule:
+          name: quickcheck-schedule-event-1min-${opt:stage}
+          description: QuickCheck Scheduler (1 minute - ${opt:stage})
+          rate: rate(1 minute)
+          enabled: false
+          input:
+            schedule: 1 minute
   check:
     handler: index.check
     events:
       - sqs:
-          arn: arn:aws:sqs:ap-southeast-2:933397847440:quickcheck-checks-${opt:stage}
+          arn: arn:aws:sqs:${file(config.${opt:stage}.yml):aws_region}:${file(config.${opt:stage}.yml):aws_account_id}:quickcheck-checks-${opt:stage}
           batchSize: 1
+          enabled: false
   notify:
     handler: index.notify
     events:
       - sqs:
-          arn: arn:aws:sqs:ap-southeast-2:933397847440:quickcheck-emails-${opt:stage}
+          arn: arn:aws:sqs:${file(config.${opt:stage}.yml):aws_region}:${file(config.${opt:stage}.yml):aws_account_id}:quickcheck-emails-${opt:stage}
           batchSize: 1
+          enabled: false

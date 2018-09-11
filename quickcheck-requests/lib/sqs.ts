@@ -2,13 +2,14 @@ import { SQS } from "aws-sdk";
 
 import { getParameter } from "./params";
 
+const isOffline = getParameter("IS_OFFLINE") == "true";
 const awsRegion = getParameter("AWS_REGION");
 const awsAccountId = getParameter("AWS_ACCOUNT_ID");
-const sqsUri = process.env.IS_OFFLINE
+const sqsUri = isOffline
   ? "http://localhost:4576"
   : `https://sqs.${awsRegion}.amazonaws.com`;
 
-const sqsOptions = process.env.IS_OFFLINE
+const sqsOptions = isOffline
   ? {
       region: awsRegion,
       endpoint: sqsUri
@@ -17,7 +18,11 @@ const sqsOptions = process.env.IS_OFFLINE
 
 export const sqs = new SQS(sqsOptions);
 
-export const queueMessage = async (queueUrl: string, body: any, delaySeconds: number = 0) => {
+export const queueMessage = async (
+  queueUrl: string,
+  body: any,
+  delaySeconds: number = 0
+) => {
   const message: SQS.SendMessageRequest = {
     MessageBody: JSON.stringify(body),
     DelaySeconds: delaySeconds,
@@ -29,5 +34,5 @@ export const queueMessage = async (queueUrl: string, body: any, delaySeconds: nu
 };
 
 export const constructQueueUrl = (name: string) => {
-  return `${sqsUri}/${process.env.IS_OFFLINE ? "queue" : awsAccountId}/${name}`;
+  return `${sqsUri}/${isOffline ? "queue" : awsAccountId}/${name}`;
 };

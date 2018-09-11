@@ -3,7 +3,8 @@ import * as RequestLib from "request-promise-native";
 import { getParameter } from "./params";
 
 const config = {
-  graphQlUri: getParameter("GRAPHQL_URI")
+  graphQlUri: getParameter("GRAPHQL_URI"),
+  graphQlApiKey: getParameter("GRAPHQL_API_KEY")
 };
 
 export const GraphQL = {
@@ -16,7 +17,8 @@ export const GraphQL = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
+        "x-api-key": config.graphQlApiKey
       },
       json: true,
       body: {

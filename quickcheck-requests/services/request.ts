@@ -41,14 +41,14 @@ export const RequestService = {
         statusCode: response.statusCode,
         responseHeaders: responseHeaders,
         body: response.body,
-        datetime: new Date(startMillis).toUTCString(),
+        datetime: new Date(startMillis).toISOString(),
         elapsedMillis: Date.now() - startMillis
       };
     } catch (error) {
       return {
         failed: true,
         failureReason: error.message,
-        datetime: new Date(startMillis).toUTCString(),
+        datetime: new Date(startMillis).toISOString(),
         elapsedMillis: Date.now() - startMillis
       };
     }

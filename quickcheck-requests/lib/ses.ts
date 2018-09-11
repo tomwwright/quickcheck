@@ -1,6 +1,8 @@
 import { SES } from "aws-sdk";
+import { getParameter } from "./params";
 
-const sesOptions = process.env.IS_OFFLINE
+const isOffline = getParameter("IS_OFFLINE") == "true";
+const sesOptions = isOffline
   ? {
       region: "localhost",
       endpoint: "localhost:4579"
