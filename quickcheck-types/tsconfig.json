@@ -1,15 +1,15 @@
 {
-    "compilerOptions": {
-      "lib": ["es6", "dom", "esnext"],
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      "module": "commonjs",
-      "rootDir": "src",
-      "outDir": "build",
-      "composite": true,
-      "declaration": true,
-      "declarationMap": true
-    },
-    "include": ["src/*.ts", "src/**/*.ts"]
-  }
-  
+  "compilerOptions": {
+    "lib": ["es6", "dom", "esnext"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "target": "es2016",
+    "rootDir": "src",
+    "outDir": "build",
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true
+  },
+  "include": ["src/*.ts", "src/**/*.ts"]
+}

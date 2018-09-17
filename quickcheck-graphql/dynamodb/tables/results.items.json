@@ -17,7 +17,7 @@
                 }
               }
             },
-            "datetime": { "S": "2018-09-10T15:53:00" },
+            "datetime": { "S": "2018-09-10T15:53:00Z" },
             "elapsedMillis": { "N": "330" },
             "statusCode": { "N": "200" },
             "responseHeaders": {

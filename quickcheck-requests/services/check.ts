@@ -5,7 +5,7 @@ import { Request, Check, Notification } from "quickcheck";
 
 const GetByScheduleQuery = `
 query($schedule:String) {
-  ChecksBySchedule(schedule: $schedule) {
+  getChecksBySchedule(schedule: $schedule) {
     checkId,
     name,
     enabled,
@@ -18,10 +18,7 @@ query($schedule:String) {
     request {
       uri,
       method,
-      headers {
-        key,
-        value
-      }
+      headers
     }
   }
 }`;
@@ -40,21 +37,6 @@ export const CheckService = {
       schedule
     });
 
-    // fix up `headers` -- the typing is wrong because GraphQL returns a list representation
-    checks.data.ChecksBySchedule.forEach(
-      check =>
-        (check.request.headers = convertListToMap(check.request.headers as any))
-    );
-
     return checks.data.ChecksBySchedule;
   }
 };
-
-function convertListToMap(
-  array: { key: string; value: string }[]
-): { [key: string]: string } {
-  return array.reduce((map, current) => {
-    map[current.key] = current.value;
-    return map;
-  }, {});
-}

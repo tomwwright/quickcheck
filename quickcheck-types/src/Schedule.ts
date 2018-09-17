@@ -1,7 +1,6 @@
-export enum Schedule {
-  ONE_MINUTE = "1 minute",
-  FIVE_MINUTES = "5 minutes",
-  FIFTEEN_MINUTES = "15 minutes",
-  HALF_HOUR = "30 minutes",
-  ONE_HOUR = "1 hour"
-}
+export type Schedule =
+  | "1 minute"
+  | "5 minutes"
+  | "15 minutes"
+  | "30 minutes"
+  | "1 hour";

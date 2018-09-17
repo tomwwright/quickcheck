@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { GraphQLServerLambda } from "graphql-yoga";
 
 import { Schema } from "./schema";

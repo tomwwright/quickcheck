@@ -1,26 +1,7 @@
-import { GraphQLSchema } from "graphql";
+import { buildSchemaSync } from "type-graphql";
+import { CheckResolver } from "./resolvers/Check";
+import { ResultResolver } from "./resolvers/Result";
 
-import { RootQuery } from "./query";
-import { RootMutations } from "./mutation";
-
-import { RequestGraphQL, RequestInputGraphQL } from "./types/Request";
-import { CheckGraphQL } from "./types/Check";
-import {
-  NotificationGraphQL,
-  NotificationInputGraphQL
-} from "./types/Notification";
-import { ResultGraphQL, ResultInputGraphQL } from "./types/Result";
-
-export const Schema: GraphQLSchema = new GraphQLSchema({
-  query: RootQuery,
-  mutation: RootMutations,
-  types: [
-    RequestGraphQL,
-    RequestInputGraphQL,
-    CheckGraphQL,
-    NotificationGraphQL,
-    NotificationInputGraphQL,
-    ResultGraphQL,
-    ResultInputGraphQL
-  ]
+export const Schema = buildSchemaSync({
+  resolvers: [CheckResolver, ResultResolver]
 });

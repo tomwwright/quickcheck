@@ -1,9 +1,8 @@
-import { client, mapper } from "../lib/mapper";
+import { mapper } from "../lib/mapper";
 import { equals } from "@aws/dynamodb-expressions";
 
 import { Schedule } from "quickcheck";
 import { Check } from "../models/Check";
-
 
 export const CheckService = {
   getById(checkId: string): Promise<Check> {
