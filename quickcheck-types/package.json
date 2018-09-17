@@ -1,0 +1,18 @@
+{
+  "name": "quickcheck-type",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "github.com/tomwwright/quickcheck",
+  "author": "Tom Wright",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "prettier": "^1.14.0",
+    "typescript": "^3.0.1"
+  },
+  "scripts": {
+      "build": "tsc --build",
+      "watch": "tsc --build --watch"
+  }
+}

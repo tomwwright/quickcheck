@@ -1,21 +1,7 @@
 import { GraphQL } from "../lib/graphql";
 import { getParameter } from "../lib/params";
-import { Request } from "./request";
 
-export type Check = {
-  checkId: string;
-  name: string;
-  enabled: boolean;
-  schedule: string;
-  scheduleOffsetSeconds: number;
-  notifications: Notification[];
-  request: Request;
-};
-
-export type Notification = {
-  name: string;
-  email: string;
-};
+import { Request, Check, Notification } from "quickcheck";
 
 const GetByScheduleQuery = `
 query($schedule:String) {

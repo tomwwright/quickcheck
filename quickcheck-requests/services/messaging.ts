@@ -3,8 +3,8 @@ import { SQS } from "aws-sdk";
 import { queueMessage, constructQueueUrl } from "../lib/sqs";
 import { getParameter } from "../lib/params";
 
+import { Check } from "quickcheck";
 import { EmailNotification } from "../handlers/notify";
-import { Check } from "../services/check";
 
 const EmailNotificationQueueUrl = constructQueueUrl(
   getParameter("EMAIL_NOTIFICATION_QUEUE")

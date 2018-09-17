@@ -1,24 +1,7 @@
 import { GraphQL } from "../lib/graphql";
 import { getParameter } from "../lib/params";
-import { Request } from "./request";
 
-export type Result = {
-  resultId?: string;
-  checkId: string;
-  request: Request;
-  datetime: string;
-  elapsedMillis: number;
-  statusCode?: number;
-  responseHeaders?: { [key: string]: string };
-  body?: string;
-  message: string;
-  sentNotifications: Notification[];
-};
-
-export type Notification = {
-  name: string;
-  email: string;
-};
+import { Result } from "quickcheck";
 
 const PutResultMutation = `
 mutation($result:ResultInput) {

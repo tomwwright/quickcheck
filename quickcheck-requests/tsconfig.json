@@ -3,8 +3,13 @@
     "lib": ["es6", "dom", "esnext"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "baseUrl": "."
+    "outDir": "build",
+    "baseUrl": ".",
+    "paths": {
+      "quickcheck": ["../quickcheck-types/build/"]
+    }
   },
   "include": ["*.ts", "**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "references": [{ "path": "../quickcheck-types" }]
 }

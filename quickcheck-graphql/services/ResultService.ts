@@ -1,7 +1,8 @@
 import { client, mapper } from "../lib/mapper";
 import { between } from "@aws/dynamodb-expressions";
 
-import { Result, ResultType } from "../models/Result";
+import { Result as ResultType } from "quickcheck";
+import { Result } from "../models/Result";
 
 export const ResultService = {
   getById(resultId: string): Promise<Result> {

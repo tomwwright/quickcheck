@@ -1,11 +1,7 @@
 import * as RequestLib from "request-promise-native";
 
-export type Request = {
-  uri: string;
-  method: string;
-  headers: { [header: string]: string };
-};
-
+import { Request } from "quickcheck";
+ 
 export type RequestResult = {
   failed: boolean;
   failureReason?: string;

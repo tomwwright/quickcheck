@@ -1,10 +1,10 @@
 import { SQSHandler, Context } from "aws-lambda";
 
-import { RequestService, Request, RequestResult } from "../services/request";
-import { ResultService, Result } from "../services/result";
+import { Request, Result, Check, Notification } from "quickcheck";
+import { RequestService, RequestResult } from "../services/request";
+import { ResultService } from "../services/result";
 import { EmailNotification } from "../handlers/notify";
 import { MessagingService } from "../services/messaging";
-import { Check, Notification } from "../services/check";
 
 export const CheckHandler: SQSHandler = async (event, context) => {
   const check: Check = JSON.parse(event.Records[0].body);
